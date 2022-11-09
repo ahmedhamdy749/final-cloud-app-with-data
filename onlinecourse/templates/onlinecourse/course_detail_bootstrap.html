@@ -78,21 +78,21 @@
 
             <!-- A choice submission form example -->
             <form id="questionform" action="point to a submit view" method="post">
-                        ... for each question in the course ... {% for x in question.question_text %}
+                        {% for question in question_text %}
                         <div class="card mt-1">
                             <div class="card-header"><h5>{{ question.question_text}}</h5></div>
                             {% csrf_token %}
                             <div class="form-group">
-                               ... for each choice in the question ...
+                                {% for choice in choice_text %}
                                 <div class="form-check">
                                     <label class="form-check-label">
                                         <input type="checkbox" name="choice_{{choice.id}}"
                                                class="form-check-input" id="{{choice.id}}"
                                                value="{{choice.id}}">{{ choice.choice_text }}
                                     </label>
-                                </div>
+                                </div> {% endfor%}
                             </div>
-                        </div>
+                        </div> {% endfor %}
                     <input class="btn btn-success btn-block" type="submit" value="Submit">
             </form>
 
