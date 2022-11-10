@@ -111,13 +111,19 @@ def enroll(request, course_id):
          # Add each selected choice object to the submission object
          # Redirect to show_exam_result with the submission id
 
-class QuestionFormView(generic.DetailView):
-    model = Question
-    template_name = 'onlinecourse/course_detail_bootstrap.html'
+#class QuestionFormView(generic.ListView):
+#    model = Question
+#    template_name = 'onlinecourse/course_detail_bootstrap.html'
 
-#def submit(request, course_id):
- #   course = get_object_or_404(Course, pk=course_id)
- #   user = request.user
+def submit(request, course_id):
+    course = get_object_or_404(Course, pk=course_id)
+    user = request.user
+    questions = Question.object.all()
+    #get_object_or_404(Question)
+    context ={"questions":questions}
+
+    print (context)
+    return render(request, 'onlinecourse/course_detail_bootstrap.html', context  )
  #   
  #   Submission.objects.create(user=user, course=course, mode='honor')
  #   enrollment = get_object_or_404(Enrollment, pk=enrollment_id)
