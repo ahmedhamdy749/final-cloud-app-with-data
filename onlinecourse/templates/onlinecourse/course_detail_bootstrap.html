@@ -53,12 +53,12 @@
 
 
             <!--showing questions and choices-->
-            <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo">START EXAM</button>
+            <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#exam">START EXAM</button>
 
-            <div id="demo" class="collapse">
+            <div id="exam" class="collapse">
                 <div class="container-fluid">
                 <form id="questionform" action="point to a submit view" method="post">
-                    {% for question in questions %}
+                    {% for question in course.question_set.all %}
                     <div class="card mt-1">
                         <div class="card-header"><h5>{{ question.question_text}}</h5></div>
                         {% csrf_token %}
